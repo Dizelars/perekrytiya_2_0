@@ -1,0 +1,54 @@
+@font-face {
+  font-family: "MoscowSans";
+  src: url("../../assets/fonts/MoscowSans-Light.woff2") format("woff2"),
+    url("../assets/fonts/MoscowSans-Light.woff") format("woff"),
+    url("../assets/fonts/MoscowSans-Light.otf") format("otf"),
+    url("../assets/fonts/MoscowSans-Light.ttf") format("ttf");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "MoscowSans";
+  src: url("../assets/fonts/MoscowSans-Regular.woff2") format("woff2"),
+    url("../assets/fonts/MoscowSans-Regular.woff") format("woff"),
+    url("../assets/fonts/MoscowSansRegular.otf") format("otf"),
+    url("../assets/fonts/MoscowSansRegular.ttf") format("ttf");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "MoscowSans";
+  src: url("../assets/fonts/MoscowSans-Medium.woff2") format("woff2"),
+    url("../assets/fonts/MoscowSans-Medium.woff") format("woff"),
+    url("../assets/fonts/MoscowSansMedium.otf") format("otf"),
+    url("../assets/fonts/MoscowSansMedium.ttf") format("ttf");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "MoscowSans";
+  src: url("../assets/fonts/MoscowSans-Bold.woff2") format("woff2"),
+    url("../assets/fonts/MoscowSans-Bold.woff") format("woff"),
+    url("../assets/fonts/MoscowSansBold.otf") format("otf"),
+    url("../assets/fonts/MoscowSansBold.ttf") format("ttf");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "MoscowSans";
+  src: url("../assets/fonts/MoscowSansExtraBold.woff2") format("woff2"),
+    url("../assets/fonts/MoscowSansExtraBold.woff") format("woff"),
+    url("../assets/fonts/MoscowSansExtraBold.otf") format("otf"),
+    url("../assets/fonts/MoscowSansExtraBold.ttf") format("ttf");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
