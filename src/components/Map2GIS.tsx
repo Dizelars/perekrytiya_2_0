@@ -1,4 +1,6 @@
 import { load } from '@2gis/mapgl';
+import classNames from "classnames";
+import styles from "./Map2GIS.module.css";
 import { useEffect, useRef  } from "react";
 
 const MAP_URL = import.meta.env.VITE_2GIS_URL;
@@ -32,7 +34,7 @@ const Map2GIS = () => {
     };
   }, []);
 
-  return <div ref={containerRef} style={{ width: '100%', height: '100vh' }} />;
+  return <div className={classNames(styles.mapWrapper)} ref={containerRef} />;
 };
 
-export default Map2GIS
+export default Map2GIS;

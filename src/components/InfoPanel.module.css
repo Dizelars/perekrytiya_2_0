@@ -1,0 +1,10 @@
+.infoPanel {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 1;
+}
+
+.infoPanel h1 {
+    margin: 0;
+}
