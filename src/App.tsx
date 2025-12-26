@@ -1,16 +1,19 @@
 import './App.css'
-import Map2GIS from './components/Map2GIS.tsx';
 import InfoPanel from './components/InfoPanel.tsx';
-import { GoogleSheetData } from './components/GoogleSheetData.tsx';
+import { MapDataProvider } from "./map/MapDataProvider";
+import GoogleSheetData from "./components/GoogleSheetData";
+import Map2GIS from "./components/Map2GIS";
 
 function App() {
   return (
     <>
       <InfoPanel />
-      <GoogleSheetData />
-      <Map2GIS />
+      <MapDataProvider>
+        <GoogleSheetData />
+        <Map2GIS />
+      </MapDataProvider>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

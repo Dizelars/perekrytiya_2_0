@@ -1,13 +1,17 @@
 import { useEffect } from "react";
 import Papa from "papaparse";
+import { parseWKT } from "../utils/parseWKT";
+import { useMapData } from "../map/useMapData";
 
 const GOOGLE_URL = import.meta.env.VITE_GOOGLE_SHEET_URL;
 
-export function GoogleSheetData() {
+export default function GoogleSheetData() {
+  const { setLines } = useMapData();
+
   useEffect(() => {
-    Papa.parse(`${GOOGLE_URL}`, {
+    Papa.parse(GOOGLE_URL, {
       download: true,
-      skipEmptyLines: false,
+      skipEmptyLines: true,
       complete: (result) => {
         const rows = result.data as string[][];
 
@@ -39,12 +43,17 @@ export function GoogleSheetData() {
         });
 
         console.log("Данные по столбцам A–N:", dataObjects);
+
+        const geometries = rows.flatMap((row) => {
+          const geom = row[9];
+          return parseWKT(geom);
+        });
+
+        setLines(geometries);
       },
-      error: (error) => {
-        console.error("Ошибка парсинга CSV:", error);
-      },
+      error: console.error,
     });
-  }, []);
+  }, [setLines]);
 
   return null;
 }
