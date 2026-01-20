@@ -3,6 +3,13 @@
     top: 20px;
     left: 20px;
     z-index: 1;
+    padding: 14px;
+    border-radius: 20px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 500px;
 }
 
 .infoPanel h1 {

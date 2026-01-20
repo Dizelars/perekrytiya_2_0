@@ -1,0 +1,42 @@
+.formData {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.formData_item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.formData_item input {
+    width: fit-content;
+    cursor: pointer;
+}
+
+.formData_item p {
+    margin: 0;
+}
+
+.formData_item ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.formData_item ul li {
+    padding: 4px 8px;
+    background-color: aquamarine;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all .5s ease;
+}
+
+.formData_item ul li:hover {
+    background-color: aqua;
+}
+
+.formData_item ul li:not(:last-child) {
+    margin-bottom: 5px;
+}
