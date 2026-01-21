@@ -1,21 +1,22 @@
-import { useState, useRef } from "react";
+import { useState, useRef, type ReactNode } from "react";
 
 type Position = {
     x: number;
     y: number;
 };
 
-type DraggableImageProps = {
-    src: string;
+type DraggableElementProps = {
     initialPosition: Position;
+    children: ReactNode;
 };
 
-const DraggableImage = ({ src, initialPosition }: DraggableImageProps) => {
+const DraggableElement = ({ initialPosition, children }: DraggableElementProps) => {
     const [position, setPosition] = useState<Position>(initialPosition);
-    const offsetRef = useRef<Position>({ x: 0, y: 0 });
-    const draggingRef = useRef<boolean>(false);
 
-    const onMouseDown = (e: React.MouseEvent<HTMLImageElement>) => {
+    const offsetRef = useRef<Position>({ x: 0, y: 0 });
+    const draggingRef = useRef(false);
+
+    const onMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
         draggingRef.current = true;
 
         offsetRef.current = {
@@ -43,22 +44,19 @@ const DraggableImage = ({ src, initialPosition }: DraggableImageProps) => {
     };
 
     return (
-        <img
-            src={src}
+        <div
             onMouseDown={onMouseDown}
-            draggable={false}
             style={{
                 position: "absolute",
                 left: position.x,
                 top: position.y,
-                opacity: 0.7,
-                width: "700px",
-                height: "auto",
                 cursor: "grab",
                 userSelect: "none",
             }}
-        />
+        >
+            {children}
+        </div>
     );
 };
 
-export default DraggableImage;
+export default DraggableElement;
