@@ -35,6 +35,8 @@ const Map2GIS = () => {
           zoom: 11,
           key: MAP_KEY,
           style: MAP_STYLE,
+          preserveDrawingBuffer: true
+          // WebGL не очищает framebuffer, Canvas карты читаем, html2canvas видит карту
         }
       );
     });
@@ -71,7 +73,7 @@ const Map2GIS = () => {
     });
   }, [lines]);
 
-  return <div className={classNames(styles.mapWrapper)} ref={containerRef} />;
+  return <div className={classNames(styles.mapWrapper, "map-canvas-container")} ref={containerRef} />;
 };
 
 export default Map2GIS;
