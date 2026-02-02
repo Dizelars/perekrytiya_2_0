@@ -29,6 +29,7 @@ const TransformWrapper: React.FC<TransformWrapperProps> = ({
           transformOrigin: "center",
           transition: "transform 0.25s ease, opacity 0.25s ease",
           willChange: "transform, opacity",
+          pointerEvents: 'none'
         }}
       >
         {children}
@@ -38,6 +39,7 @@ const TransformWrapper: React.FC<TransformWrapperProps> = ({
       {showControls && (
         <div
           style={{
+            position: 'relative',
             marginTop: 12,
             padding: 12,
             background: "#111",
@@ -47,6 +49,7 @@ const TransformWrapper: React.FC<TransformWrapperProps> = ({
             display: "grid",
             gap: 8,
             width: 220,
+            zIndex: 2
           }}
         >
           <Control
@@ -61,7 +64,7 @@ const TransformWrapper: React.FC<TransformWrapperProps> = ({
           <Control
             label="Масштаб"
             min={0.5}
-            max={2}
+            max={1.5}
             step={0.01}
             value={scale}
             onChange={setScale}

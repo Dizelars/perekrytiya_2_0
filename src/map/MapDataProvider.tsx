@@ -6,8 +6,20 @@ export const MapDataProvider: React.FC<{ children: React.ReactNode }> = ({ child
   const [lines, setLines] = useState<LineGeometry[]>([]);
   const [events, setEvents] = useState<EventItem[]>([]);
 
+  // Режим редактирования линий
+  const [editMode, setEditMode] = useState<boolean>(false);
+
   return (
-    <MapDataContext.Provider value={{ lines, setLines, events, setEvents }}>
+    <MapDataContext.Provider
+      value={{
+        lines,
+        setLines,
+        events,
+        setEvents,
+        editMode,
+        setEditMode,
+      }}
+    >
       {children}
     </MapDataContext.Provider>
   );

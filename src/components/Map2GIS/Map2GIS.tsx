@@ -2,7 +2,7 @@ import classNames from "classnames";
 import styles from "./Map2GIS.module.css";
 import { load } from "@2gis/mapgl";
 import { useEffect, useRef } from "react";
-import { useMapData } from "../map/useMapData";
+import { useMapData } from "../../map/useMapData";
 
 const MAP_URL = import.meta.env.VITE_2GIS_URL;
 const MAP_KEY = import.meta.env.VITE_2GIS_KEY;
@@ -35,7 +35,8 @@ const Map2GIS = () => {
           zoom: 11,
           key: MAP_KEY,
           style: MAP_STYLE,
-          preserveDrawingBuffer: true
+          preserveDrawingBuffer: true,
+          enableTrackResize: true
           // WebGL не очищает framebuffer, Canvas карты читаем, html2canvas видит карту
         }
       );

@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import styles from "./FormDate.module.css";
-import { useMapData } from "../map/useMapData";
+import { useMapData } from "../../map/useMapData";
 
 type Props = {
     today: string;

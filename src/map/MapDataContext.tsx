@@ -13,6 +13,9 @@ export interface MapDataContextValue {
   events: EventItem[];
   setLines: (lines: LineGeometry[]) => void;
   setEvents: (events: EventItem[]) => void;
+
+  editMode: boolean;
+  setEditMode: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const MapDataContext = createContext<MapDataContextValue | null>(null);
