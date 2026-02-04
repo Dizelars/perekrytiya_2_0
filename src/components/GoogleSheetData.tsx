@@ -24,12 +24,11 @@ export default function GoogleSheetData({ selectedDate }: Props) {
 
         const NUM_COLUMNS = 14; // столбцы A–N
 
-        // Парсим строки в объекты
+        // Преобразуем строки в объекты
         const dataObjects = rows.map((row) => {
           const fullRow = [...row];
           while (fullRow.length < NUM_COLUMNS) fullRow.push("");
 
-          // Возвращаем объект по индексам столбцов
           return {
             uuid: fullRow[0],
             start_date: fullRow[1],
@@ -48,44 +47,42 @@ export default function GoogleSheetData({ selectedDate }: Props) {
           };
         });
 
-        // console.log("Данные по столбцам A–N:", dataObjects);
-
         // Фильтруем по выбранной дате
         const filteredDate = selectedDate
           ? dataObjects.filter((item) =>
-              isDateInRange(
-                selectedDate,
-                item.start_date,
-                item.end_date
-              )
+              isDateInRange(selectedDate, item.start_date, item.end_date)
             )
           : dataObjects;
 
-        // Группируем мероприятия по work (название мероприятия)
+        // Группируем мероприятия по work
         const groupedEvents = filteredDate.reduce((acc, item) => {
           const key = item.work;
-
           if (!acc[key]) {
             acc[key] = {
-              id: key, // уникальный идентификатор мероприятия
+              id: item.uuid, // id мероприятия
               work: item.work,
               geoms: [] as string[],
             };
           }
-
           acc[key].geoms.push(item.geom);
           return acc;
         }, {} as Record<string, { id: string; work: string; geoms: string[] }>);
 
         const eventsArray = Object.values(groupedEvents);
 
-        // Все линии для карты
-        const geometries = eventsArray.flatMap((event) =>
-          event.geoms.flatMap(parseWKT)
-        );
+        // Создаем массив линий с привязанными UUID
+        const geometriesWithId = filteredDate.flatMap(item => {
+          const parsedGeoms = parseWKT(item.geom);
+          return parsedGeoms.map(geom => ({
+            id: item.uuid,
+            geom,
+          }));
+        });
+
+        console.log("Линии с ID:", geometriesWithId);
 
         // Сохраняем в контексте
-        setLines(geometries);
+        setLines(geometriesWithId);
         setEvents(eventsArray);
       },
       error: console.error,

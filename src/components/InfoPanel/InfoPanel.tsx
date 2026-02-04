@@ -5,7 +5,7 @@ import FormDate from "../FormDate/FormDate";
 import DraggableElement from "../DraggableElement";
 import TransformWrapper from "../TransformWrapper";
 import ScreenShot from "../ScreenShot/ScreenShot";
-// import EditModeToggle from "./EditModeToggle";
+import EditModeToggle from "../EditModeToggle";
 
 type Props = {
   today: string;
@@ -28,7 +28,7 @@ const InfoPanel = ({ today, onDateChange }: Props) => {
       <div className={styles.infoPanel__buttos}>
         <button onClick={() => toggleOverlay("scheme")}>Схема</button>
         <button onClick={() => toggleOverlay("screenshot")}>Скриншот</button>
-        {/* <EditModeToggle /> */}
+        <EditModeToggle />
       </div>
 
       {activeOverlay === "scheme" && (

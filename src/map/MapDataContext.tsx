@@ -1,6 +1,6 @@
 import { createContext } from "react";
 
-export type LineGeometry = [number, number][];
+export type LineGeometry = { id: string; geom: [number, number][]; };
 
 export type EventItem = {
   id: string;
