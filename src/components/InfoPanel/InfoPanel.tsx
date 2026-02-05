@@ -6,15 +6,17 @@ import DraggableElement from "../DraggableElement";
 import TransformWrapper from "../TransformWrapper";
 import ScreenShot from "../ScreenShot/ScreenShot";
 import EditModeToggle from "../EditModeToggle";
+import Search from "../Search/Search";
 
 type Props = {
   today: string;
   onDateChange: (date: string) => void;
+  onPlaceSelect: (place: MapSearchSelection) => void;
 };
 
 type ActiveOverlay = "scheme" | "screenshot" | null;
 
-const InfoPanel = ({ today, onDateChange }: Props) => {
+const InfoPanel = ({ today, onDateChange, onPlaceSelect }: Props) => {
   const [activeOverlay, setActiveOverlay] = useState<ActiveOverlay>(null);
 
   const toggleOverlay = (type: Exclude<ActiveOverlay, null>) => {
@@ -45,6 +47,7 @@ const InfoPanel = ({ today, onDateChange }: Props) => {
         </DraggableElement>
       )}
 
+      <Search onSelect={(item) => onPlaceSelect({ address_name: item.address_name, id: item.id, name: item.name })}/>
       <FormDate today={today} onDateInput={onDateChange} />
     </div>
   );

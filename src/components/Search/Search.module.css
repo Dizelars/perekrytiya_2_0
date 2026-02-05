@@ -1,0 +1,34 @@
+.Search {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.Search_formData_item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.Search_list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.Search_item {
+    padding: 4px 8px;
+    background-color: gold;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all .5s ease;
+}
+
+.Search_item:not(:last-child) {
+    margin-bottom: 5px;
+}
+
+.Search_item:hover {
+    background-color: aqua;
+}

@@ -24,6 +24,12 @@ declare global {
   interface MapGLInstance {
     destroy(): void;
   }
+
+  interface MapSearchSelection {
+    address_name: string,
+    id: string;
+    name: string;
+  }
 }
 
 export {};

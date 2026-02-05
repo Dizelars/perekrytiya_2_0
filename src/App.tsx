@@ -9,13 +9,18 @@ const getToday = (): string => new Date().toISOString().slice(0, 10);
 
 function App() {
   const [selectedDate, setSelectedDate] = useState<string>(getToday);
+  const [selectedPlace, setSelectedPlace] = useState<MapSearchSelection | null>(null);
 
   return (
     <>
       <MapDataProvider>
-        <InfoPanel today={selectedDate} onDateChange={setSelectedDate} />
+        <InfoPanel 
+          today={selectedDate}
+          onDateChange={setSelectedDate}
+          onPlaceSelect={setSelectedPlace}
+        />
         <GoogleSheetData selectedDate={selectedDate} />
-        <Map2GIS />
+        <Map2GIS selectedPlace={selectedPlace}/>
       </MapDataProvider>
     </>
   );

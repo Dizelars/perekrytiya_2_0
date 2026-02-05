@@ -79,7 +79,7 @@ export default function GoogleSheetData({ selectedDate }: Props) {
           }));
         });
 
-        console.log("Линии с ID:", geometriesWithId);
+        // console.log("Линии с ID:", geometriesWithId);
 
         // Сохраняем в контексте
         setLines(geometriesWithId);

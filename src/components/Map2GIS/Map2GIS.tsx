@@ -11,12 +11,17 @@ import "@2gis/mapgl-terra-draw/dist/mapgl-terra-draw.css";
 const MAP_URL = import.meta.env.VITE_2GIS_URL as string;
 const MAP_KEY = import.meta.env.VITE_2GIS_KEY as string;
 const MAP_STYLE = import.meta.env.VITE_2GIS_STYLE as string;
+const SEARCH_URL = import.meta.env.VITE_SEARCH_URL as string;
 
 type MapGL = Awaited<ReturnType<typeof load>>;
 type MapInstance = InstanceType<MapGL["Map"]>;
 type PolylineInstance = InstanceType<MapGL["Polyline"]>;
 
-const Map2GIS = () => {
+type Props = {
+  selectedPlace: MapSearchSelection | null;
+};
+
+const Map2GIS: React.FC<Props> = ({ selectedPlace }) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<MapInstance | null>(null);
   const mapglRef = useRef<MapGL | null>(null);
@@ -104,7 +109,7 @@ const Map2GIS = () => {
 
         terraRef.current = draw;
 
-        // Добавляем линии через публичный метод render
+        // Добавляем линии через addFeatures
         const features = lines.map((line) => ({
           id: line.id,
           type: "Feature" as const,
@@ -140,6 +145,35 @@ const Map2GIS = () => {
       }
     }
   }, [editMode, lines]);
+
+  useEffect(() => {
+    console.log(selectedPlace);
+    if (!selectedPlace || !mapRef.current) return;
+
+    const fetchCoords = async () => {
+      try {
+        const res = await fetch(
+          `${SEARCH_URL}/3.0/items/geocode?q=${selectedPlace.address_name}&fields=items.point&key=${MAP_KEY}`
+        );
+
+        const data = await res.json();
+
+        console.log(data);
+
+        const item = data.result?.items?.[0];
+        const point = item?.point;
+
+        if (!point) return;
+
+        mapRef.current?.setCenter(point.lon, point.lat);
+        mapRef.current?.setZoom(16);
+      } catch (e) {
+        console.error("Ошибка получения координат:", e);
+      }
+    };
+
+    fetchCoords();
+  }, [selectedPlace]);
 
   return (
     <div
