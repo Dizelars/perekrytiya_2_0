@@ -54,6 +54,7 @@ const Search: React.FC<SearchProps> = ({ onSelect }) => {
 
         const data: SuggestResponse = await response.json();
 
+        console.log("suggests:");
         console.log(data);
 
         setSuggestions(data.result?.items ?? []);

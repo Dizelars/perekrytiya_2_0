@@ -107,6 +107,8 @@ const Map2GIS: React.FC<Props> = ({ selectedPlace }) => {
           ],
         });
 
+        // console.log(draw);
+
         terraRef.current = draw;
 
         // Добавляем линии через addFeatures
@@ -158,6 +160,7 @@ const Map2GIS: React.FC<Props> = ({ selectedPlace }) => {
 
         const data = await res.json();
 
+        console.log("geocode:");
         console.log(data);
 
         const item = data.result?.items?.[0];
